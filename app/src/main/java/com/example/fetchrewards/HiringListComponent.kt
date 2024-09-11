@@ -7,12 +7,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HiringList(viewModel: HiringViewModel){
+fun HiringList(viewModel: HiringViewModel=viewModel()){
     val items by viewModel.hiringData
-    
+
     val groups = items.groupBy { it.listId }.toSortedMap()
 
     LazyColumn {
@@ -33,5 +34,5 @@ fun HiringList(viewModel: HiringViewModel){
 
 @Composable
 fun HiringListItem(hiringItem: HiringItem) {
-    Text(text = hiringItem.name)
+    Text(text = hiringItem.name!!)
 }

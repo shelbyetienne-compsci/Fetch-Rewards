@@ -1,5 +1,6 @@
 package com.example.fetchrewards
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,7 +29,8 @@ class HiringViewModel: ViewModel() {
         viewModelScope.launch {
             try {
                 val response = retroFit.getData().await()
-                hiringData.value = response.filter { it.name.isNotEmpty() }
+                hiringData.value = response.filter { !it.name.isNullOrEmpty() }
+                Log.d("Api Call Made", hiringData.toString())
             } catch (e:Exception) {
                 e.printStackTrace()
                 hiringData.value = emptyList()

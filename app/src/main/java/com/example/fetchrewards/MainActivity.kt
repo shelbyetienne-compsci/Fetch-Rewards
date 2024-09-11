@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
             FetchRewardsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
-                        HiringList(viewModel = HiringViewModel())
+                        HiringList()
                     }
                 }
             }
