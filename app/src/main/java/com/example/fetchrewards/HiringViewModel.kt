@@ -8,6 +8,8 @@ import retrofit2.Retrofit
 import retrofit2.await
 import retrofit2.converter.gson.GsonConverterFactory
 
+const val BASE_URL = "https://fetch-hiring.s3.amazonaws.com/"
+
 class HiringViewModel: ViewModel() {
     var hiringData = mutableStateOf<List<HiringItem>>(emptyList())
         private set
@@ -19,7 +21,7 @@ class HiringViewModel: ViewModel() {
     private fun getHiringData() {
         val retroFit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("")
+            .baseUrl(BASE_URL)
             .build()
             .create(ApiInterface::class.java)
 
