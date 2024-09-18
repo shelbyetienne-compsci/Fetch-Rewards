@@ -20,7 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HiringList(viewModel: HiringViewModel = viewModel()) {
-    val items by viewModel.hiringData
+    val items = viewModel.hiringData.value
 
     val groups = items.groupBy { it.listId }.toSortedMap()
 
