@@ -20,12 +20,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HiringList(viewModel: HiringViewModel = viewModel()) {
-    val items = viewModel.hiringData.value
-
-    val groups = items.groupBy { it.listId }.toSortedMap()
+    val items = viewModel.hiringData
 
     LazyColumn(modifier = Modifier.fillMaxSize()) {
-        groups.forEach { group ->
+        items.forEach { group ->
             stickyHeader {
                 Column(
                     modifier = Modifier
@@ -40,7 +38,7 @@ fun HiringList(viewModel: HiringViewModel = viewModel()) {
                 }
             }
 
-            items(group.value.sortedBy { it.name }) { item ->
+            items(group.value) { item ->
                 HiringListItem(hiringItem = item)
             }
 
